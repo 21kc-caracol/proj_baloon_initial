@@ -7,6 +7,13 @@ public class saveImage : MonoBehaviour
 {
 
     public int FileCounter = 0;
+    private string folderPath;
+
+    private void Start()
+    {
+        folderPath = Application.dataPath + "/Frames";
+        Directory.CreateDirectory(folderPath);
+    }
 
     public void freezeFrame()
     {
@@ -32,7 +39,7 @@ public class saveImage : MonoBehaviour
         var Bytes = Image.EncodeToPNG();
         Destroy(Image);
 
-        File.WriteAllBytes(Application.dataPath + "/Frames/Frame_" + FileCounter + ".png", Bytes);
+        File.WriteAllBytes(folderPath + "/Frame_" + FileCounter + ".png", Bytes);
         FileCounter++;
     }
 
